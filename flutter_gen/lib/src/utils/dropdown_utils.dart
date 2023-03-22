@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 import './dropdownlist.dart';
 import './style_utils.dart';
-import './../yase/yase.dart';
 import 'dart:developer';
 
 typedef OnColorChangeCallback = void Function(Color, int, String, BuildContext);
@@ -99,10 +98,16 @@ DropdownMenu<T> getDropdownMenu<T>(
   return w;
 }
 
-CustomDropdown<ThemeData> getCustomDropdownMenuForThemeNames(
-    BuildContext context, String label, OnThemeChangeCallback callback,
-    {double width = 150, double height = 20, State? tag = null}) {
-  var _themeManager = YaSeApp.of(context)!.widget.getThemeManager();
+CustomDropdown<ThemeData> getCustomDropdownMenuForThemeNames<T>(
+    BuildContext context,
+    ValueGetter<T> getterCallback,
+    List<Tuple2<String, ThemeData>> Function(BuildContext) tupleCallback,
+    String label,
+    OnThemeChangeCallback callback,
+    {double width = 150,
+    double height = 20,
+    State? tag = null}) {
+  var _themeManager = getterCallback();
   return CustomDropdown<ThemeData>(
       child: Text(
         label,
@@ -121,8 +126,7 @@ CustomDropdown<ThemeData> getCustomDropdownMenuForThemeNames(
         elevation: 3,
         padding: EdgeInsets.all(1),
       ),
-      items: getDropdownItems(
-          _themeManager.getThemeDataItemsAsListOfTuples(context)));
+      items: getDropdownItems(tupleCallback(context)));
 }
 
 CustomDropdown<Color> getCustomDropdownMenuForColor(String label,

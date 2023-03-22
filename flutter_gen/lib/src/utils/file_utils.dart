@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/yase/yase.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 import 'dart:io';
@@ -47,25 +46,28 @@ Future<String> getDefaultRootFolderAsString({String appFolder = ""}) async {
   return directory.path;
 }
 
-String getYaseAppPath(BuildContext context, {appFolder: "YaSe"}) {
-  var appRootFolder = YaSeApp.of(context)?.widget.YaSeAppPath;
+String getAppPath<T extends State<StatefulWidget>>(
+    BuildContext context, ValueGetter<String> callback,
+    {appFolder: ""}) {
+  var appRootFolder = callback();
   if (appRootFolder?.split(path.separator).last == appFolder) {
     return appRootFolder!;
   }
   return concatPaths([appRootFolder!, appFolder]);
 }
 
-String getFullPath(BuildContext context, String filename, String appFolder) {
-  var folder = getYaseAppPath(context, appFolder: appFolder);
+String getFullPath(BuildContext context, ValueGetter<String> callback,
+    String filename, String appFolder) {
+  var folder = getAppPath(context, callback, appFolder: appFolder);
   if (!filename.contains(folder!)) return concatPaths([folder, filename]);
   return filename;
 }
 
-void createFile(
-    BuildContext context, String filename, String appFolder, File? file,
+void createFile(BuildContext context, ValueGetter<String> callback,
+    String filename, String appFolder, File? file,
     {bool saveIt = true}) {
   debugger();
-  var fullFilename = getFullPath(context, filename, appFolder);
+  var fullFilename = getFullPath(context, callback, filename, appFolder);
   file = File(fullFilename);
   if (saveIt) file.create();
 }
@@ -95,8 +97,9 @@ List<Node> getChildrenPathElements(Node parentNode, Directory dir) {
   return children;
 }
 
-List<Node> listFiles(BuildContext context, {String appFolder = "YaSe"}) {
-  var strDir = getYaseAppPath(context, appFolder: appFolder);
+List<Node> listFiles(BuildContext context, ValueGetter<String> callback,
+    {String appFolder = ""}) {
+  var strDir = getAppPath(context, callback, appFolder: appFolder);
   var dir = Directory(strDir);
   List<FileSystemEntity> files = dir.listSync(recursive: true);
   print("Dir: ${dir.path}");
