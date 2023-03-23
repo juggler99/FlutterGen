@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
-import './../../utils/dlg_utils.dart';
+import '../../utils/dlg_utils.dart';
 import 'dart:developer';
 
 class ThemeManager with ChangeNotifier {

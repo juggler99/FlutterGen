@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
-import './../bloc_controls/theme_manager/theme_manager.dart';
+import '../bloc_controls/theme_manager/theme_manager.dart';
 import 'dlg_utils.dart';
 import 'dart:developer';
 

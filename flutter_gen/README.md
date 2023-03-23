@@ -11,12 +11,28 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+flutter_gen is a generic set of utilities and classes to facilitate the development of apps
+Elements can be reused from different apps speeding up development
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Utils
+Button, custom button generators
+Collections, manipulation and conversions
+Dialog, stock dialog methods
+Drawer, generate drawer elements based on strings
+Dropdown, generate dropdown lists with callbacks and customisation
+File, file managememt methods
+Keyboard, keyboad utilities
+Menu, generate Menu items
+Python, manipulate keywords
+Reflectable, managing reflection
+Screen, custom screen methods
+String, string management
+Style, manage and generate style elements
+TabBar, create custom tab bars
+Theme, theme management
+
 
 ## Getting started
 
