@@ -8,8 +8,10 @@ class StringUtils {
   }
 }
 
+/// Returns a List<String> with Non Significant Characters
 List<String> NonSignificantChars = ['\n', ':', ' '];
 
+/// Returns a Tuple2<String, int> with the word at the given position and starting position of such word
 //[direction]:
 // -1: backwards
 //  0: both
@@ -59,6 +61,7 @@ Tuple2<String, int> getWordAtPosition(String txt, int pos,
   }
 }
 
+/// Returns a Tuple3<String, String, int> with the text before the current word, the text after the current word and the new cursor position
 // inputs:
 // text, text to process
 // curWord, current word in text (partial word ok)

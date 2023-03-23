@@ -5,6 +5,7 @@ import './../bloc_controls/theme_manager/theme_manager.dart';
 import 'dlg_utils.dart';
 import 'dart:developer';
 
+/// Applies the newTextStyle to the targetCopyWith of the themeData
 void applyThemeDataTextStyle(
     ThemeData themeData, String targetCopyWith, TextStyle newTextStyle) {
   debugger();
@@ -62,6 +63,7 @@ void applyThemeDataTextStyle(
             themeData.textTheme.overline!.fontSize! - newTextStyle.fontSize!);
 }
 
+/// returns a List<Color> with different style elements from context Theme
 List<Color> getThemeSchemaColors(context) {
   return <Color>[
     Theme.of(context).splashColor,
@@ -102,6 +104,7 @@ List<String> getThemeSchemaColorNames(BuildContext context) {
   ];
 }
 
+/// returns a List<Tuple2<String, Color>> with different style elements from context Theme
 List<Tuple2<String, Color>> getThemeSchemaColorsCombo(BuildContext context) {
   List<Tuple2<String, Color>> results = [];
   var colorNames = getThemeSchemaColorNames(context);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 import 'style_utils.dart';
 
+/// Returns a [TextButton] with the given [label] and [color] and [value]
 TextButton getTextButtonForClosingDialog<T>(
     BuildContext context, String label, Color? color, T value) {
   ThemeData localTheme = Theme.of(context).copyWith(primaryColor: color);
@@ -17,6 +18,7 @@ TextButton getTextButtonForClosingDialog<T>(
       });
 }
 
+/// Returns a [ElevatedButton] with the given [label] and [color] and [value]
 ElevatedButton getElevatedButtonForClosingDialog<T>(
     BuildContext context, String label, Color? color, T value) {
   ThemeData localTheme = Theme.of(context).copyWith(primaryColor: color);
@@ -33,6 +35,9 @@ ElevatedButton getElevatedButtonForClosingDialog<T>(
       });
 }
 
+/// Returns a [IconButton] as Navigator using label as the given [NacTarget]
+/// providing an optional back arrow to navigate back and
+/// also an option to pop the Previous element in navigation route
 IconButton getNavIconButton(
     BuildContext context, IconData iconData, String NavTarget,
     {bool allowBack = true,
@@ -56,6 +61,7 @@ IconButton getNavIconButton(
   );
 }
 
+/// Returns a [IconButton] with a tool tip and a callback to execute
 Widget getIconButton(BuildContext context, IconData iconData, String tooltip,
     VoidCallback callback, int flex,
     {double iconSize = 24.0}) {
@@ -77,6 +83,7 @@ Widget getIconButton(BuildContext context, IconData iconData, String tooltip,
           )));
 }
 
+/// Returns a [IconButton] with a tool tip and a callback to execute usig an asset (path)
 Widget getIconButtonFromAsset(
     String path, String tooltip, VoidCallback callback, int flex) {
   return Material(
@@ -88,6 +95,7 @@ Widget getIconButtonFromAsset(
           )));
 }
 
+/// Returns a [TextButton] with the given [label] and [color] and callback to execute
 TextButton getTextButtonWithValue<T>(BuildContext context, String label,
     Color? color, TextStyle style, T value, VoidCallback onPressed) {
   TextStyle textStyle = style.apply(color: color);
@@ -100,6 +108,7 @@ TextButton getTextButtonWithValue<T>(BuildContext context, String label,
       onPressed: onPressed);
 }
 
+/// Returns a [TextButton] with the given [label] and [width] and callback to execute
 Widget getTextButton(
     BuildContext context, String label, VoidCallback onTap, double width,
     {double height = -1,
@@ -131,6 +140,7 @@ Widget getTextButton(
                       )))));
 }
 
+/// Returns a [ButtonBar] containing text buttons, based on gievn list of items
 ButtonBar createTextButtonBarFromListOfText(
     List<String> items, TextEditingController targetController) {
   var buttons = <SizedBox>[];
@@ -162,6 +172,7 @@ ButtonBar createTextButtonBarFromListOfText(
       buttonPadding: EdgeInsets.zero);
 }
 
+/// Button event that returns a [String]
 void _onButtonPressed(String character, TextEditingController _controller) {
   String currentText = _controller.text;
   TextSelection currentSelection = _controller.selection;

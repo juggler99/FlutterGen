@@ -26,6 +26,7 @@ Color getColorRed(Set<MaterialState> states) {
   return Colors.red;
 }
 
+/// Returns a [ButtonStyle] for a TextButton with the given [Theme]
 ButtonStyle generateTextButtonStyle(ThemeData theme) {
   return ButtonStyle(
       alignment: Alignment.center,
@@ -41,6 +42,7 @@ ButtonStyle generateTextButtonStyle(ThemeData theme) {
           (states) => theme.textTheme.subtitle1));
 }
 
+/// Returns a [ButtonStyle] with the given [Theme]
 ButtonStyle generateButtonStyle(ThemeData theme) {
   return ButtonStyle(
       alignment: Alignment.center,
@@ -54,6 +56,7 @@ ButtonStyle generateButtonStyle(ThemeData theme) {
           MaterialStateProperty.resolveWith((states) => theme.shadowColor));
 }
 
+/// Return a compsoite button coprised of a [Column] conyaineing an [Icon], a [Container] and a label
 Column buildButtonColumn(IconData icon, String label, ThemeData themeData) {
   return Column(
     mainAxisSize: MainAxisSize.min,
@@ -68,6 +71,7 @@ Column buildButtonColumn(IconData icon, String label, ThemeData themeData) {
   );
 }
 
+/// Returns an [Icon] that can be collapsed
 Widget buildCollapsibleIcon(bool isCollapsed) {
   final double size = 52;
   final icon = isCollapsed ? Icons.arrow_forward_ios : Icons.arrow_back_ios;
@@ -82,6 +86,7 @@ Widget buildCollapsibleIcon(bool isCollapsed) {
   );
 }
 
+/// Returns inverse Color of given [Color]
 Color getBorderColorBasedOnCanvasColor(
     BuildContext context, Color targetColor) {
   Color inverseColor = Colors.blueGrey;
@@ -104,6 +109,7 @@ Color getBorderColorBasedOnCanvasColor(
   return targetColor;
 }
 
+/// Returns a [List] of [Tuple2] containing the name of primary [Color]
 List<String> primaryColorNames = [
   'red',
   'pink',
@@ -125,6 +131,7 @@ List<String> primaryColorNames = [
   'blueGrey'
 ];
 
+/// Returns the name of given primary [Color]
 String getPrimaryColorName(Color color) {
   for (int i = 0; i < Colors.primaries.length; i++) {
     Color testColor = Colors.primaries[i];
@@ -137,6 +144,7 @@ String getPrimaryColorName(Color color) {
   return color.toString();
 }
 
+/// Returns the name of given [Color]
 String getColorName(Color color) {
   String colorName = getPrimaryColorName(color);
   if (colorName.indexOf('0xff') > -1) {
@@ -153,6 +161,7 @@ String getColorName(Color color) {
   return colorName;
 }
 
+/// Returns a [List] of [String] containing the name of shades based on primary [Color]
 List<int> getShadeNames() {
   List<int> result = [50];
   int n = 0;
@@ -163,6 +172,7 @@ List<int> getShadeNames() {
   return result;
 }
 
+/// Returns a [List] of [String] containing the name colors that iclude their shades
 List<String> getExpandedColorNames() {
   List<String> expandedColorNames = [];
   primaryColorNames.forEach((element) {
@@ -173,12 +183,14 @@ List<String> getExpandedColorNames() {
   return expandedColorNames;
 }
 
+/// Returns a [List] of [Tuple2] containing the Primary and Black and White colors
 List<Tuple2<String, Color>> getFullColorsAsListOfTuples() {
   var results =
       getPrimaryColorsAsListOfTuples() + getBlackWhiteColorsAsListOfTuples();
   return results;
 }
 
+/// Returns a [List] of [Tuple2] containing Primary colors
 List<Tuple2<String, Color>> getPrimaryColorsAsListOfTuples() {
   List<Tuple2<String, Color>> results = [];
   primaryColorNames.forEach((element) {
@@ -188,6 +200,7 @@ List<Tuple2<String, Color>> getPrimaryColorsAsListOfTuples() {
   return results;
 }
 
+/// Returns a [List] of [Tuple2] containing Black and White colors
 List<Tuple2<String, Color>> getPrimaryColorsPlusBlackAndWhiteAsListOfTuples() {
   List<Tuple2<String, Color>> results = [];
   primaryColorNames.forEach((element) {
@@ -199,6 +212,7 @@ List<Tuple2<String, Color>> getPrimaryColorsPlusBlackAndWhiteAsListOfTuples() {
   return results;
 }
 
+/// Returns a [List] of [Tuple2] containing All Colors
 List<Tuple2<String, Color>> getAllColorsAsListOfTuples() {
   List<Tuple2<String, Color>> results = [];
   primaryColorNames.forEach((element) {
@@ -213,6 +227,7 @@ List<Tuple2<String, Color>> getAllColorsAsListOfTuples() {
   return results;
 }
 
+/// Returns a [List] of [Tuple2] given the target color
 List<Tuple2<String, Color>> getShadesForColorAsListOfTuples(Color targetColor) {
   var bwColor = blackWhiteBaseColors.firstWhere(
       (colorToCheck) => colorToCheck == targetColor,
@@ -224,6 +239,7 @@ List<Tuple2<String, Color>> getShadesForColorAsListOfTuples(Color targetColor) {
   }
 }
 
+/// Returns a [List] of [Tuple2] given the target color
 List<Tuple2<String, Color>> getShadesForAnyColorAsListOfTuples(
     Color targetColor) {
   MaterialColor targetMaterialColor = Colors.red;
@@ -246,6 +262,7 @@ List<Tuple2<String, Color>> getShadesForAnyColorAsListOfTuples(
   return results;
 }
 
+/// Returns a [List] of [Tuple2] that represent Shades of colors
 List<Tuple2<String, Color>> getShadeColorsAsListOfTuples() {
   List<Tuple2<String, Color>> results = [];
   primaryColorNames.forEach((element) {
@@ -259,6 +276,7 @@ List<Tuple2<String, Color>> getShadeColorsAsListOfTuples() {
   return results;
 }
 
+/// Returns a [List] of [Tuple2] that represent Black and White Shades
 List<Color> blackWhiteShades = [
   Colors.white,
   Colors.white10,
@@ -309,6 +327,7 @@ List<String> getBlackWhiteNames() {
   return blackAndWhite;
 }
 
+/// Returns a [List] of [Tuple2] that represent Black and White Shades
 List<Tuple2<String, Color>> getBlackWhiteShadesForColorAsListOfTuples(
     Color targetColor) {
   String colorName = getBlackWhiteNameForColor(targetColor);
@@ -324,6 +343,7 @@ List<Tuple2<String, Color>> getBlackWhiteShadesForColorAsListOfTuples(
   return results;
 }
 
+/// Returns a [List] of [Tuple2] that represent Black and White Colors
 List<Tuple2<String, Color>> getBlackWhiteColorsAsListOfTuples() {
   List<Tuple2<String, Color>> results = [];
   var blackWhiteNames = getBlackWhiteNames();
@@ -334,6 +354,7 @@ List<Tuple2<String, Color>> getBlackWhiteColorsAsListOfTuples() {
   return results;
 }
 
+/// Returns a Map<Color, String> that represent Primary Colors
 Map<Color, String> getPrimaryColorsAsMapKeyedByColor() {
   Map<Color, String> results = {};
   var colors = getPrimaryColorsAsListOfTuples();

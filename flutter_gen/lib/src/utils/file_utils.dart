@@ -6,18 +6,22 @@ import 'package:path/path.dart' as path;
 import 'package:flutter_treeview/flutter_treeview.dart';
 import 'dart:developer';
 
+/// Returns a string after reading a file in async mode
 Future<String> readAsync(String filename) async {
   return await File(filename).readAsString();
 }
 
+/// Returns a File after writing a file in async mode
 Future<File> writeAsync(String filename, String content) async {
   return await File(filename).writeAsString(content);
 }
 
+/// Returns a string after reading a file in sync mode
 String read(String filename) {
   return File(filename).readAsStringSync();
 }
 
+/// Writes a file in sync mode
 void write(String filename, String content) {
   var file = File(filename);
   var parent = file.parent;
@@ -28,11 +32,15 @@ void write(String filename, String content) {
   File(filename).writeAsStringSync(content);
 }
 
+/// Returns a boolean if file exists
 Future<bool> exists(String filename) async {
   var file = File(filename);
   return await file.exists();
 }
 
+///Returns a string representing default file location for an app
+///varies according to device
+///appFolder is used to append a custom path
 Future<String> getDefaultRootFolderAsString({String appFolder = ""}) async {
   // only supporting iOs and Android
   var directory = await getApplicationDocumentsDirectory();
@@ -46,6 +54,7 @@ Future<String> getDefaultRootFolderAsString({String appFolder = ""}) async {
   return directory.path;
 }
 
+///Returns a string representing default file location for an app from root App class
 String getAppPath<T extends State<StatefulWidget>>(
     BuildContext context, ValueGetter<String> callback,
     {appFolder: ""}) {
@@ -56,6 +65,7 @@ String getAppPath<T extends State<StatefulWidget>>(
   return concatPaths([appRootFolder!, appFolder]);
 }
 
+///Returns a string representing full path for a filename
 String getFullPath(BuildContext context, ValueGetter<String> callback,
     String filename, String appFolder) {
   var folder = getAppPath(context, callback, appFolder: appFolder);
@@ -63,6 +73,7 @@ String getFullPath(BuildContext context, ValueGetter<String> callback,
   return filename;
 }
 
+///Creates a File
 void createFile(BuildContext context, ValueGetter<String> callback,
     String filename, String appFolder, File? file,
     {bool saveIt = true}) {
@@ -72,10 +83,12 @@ void createFile(BuildContext context, ValueGetter<String> callback,
   if (saveIt) file.create();
 }
 
+///Returns a string representing concatenated parts of a path
 String concatPaths(List<String> items) {
   return path.joinAll(items);
 }
 
+///Returns a set of Nodes representing files under given [Directory]
 List<Node> getChildrenPathElements(Node parentNode, Directory dir) {
   var items = dir.listSync(recursive: true);
   List<Node> children = <Node>[];
@@ -97,6 +110,7 @@ List<Node> getChildrenPathElements(Node parentNode, Directory dir) {
   return children;
 }
 
+///Returns a Tree of Nodes representing files under given App [Directory]
 List<Node> listFiles(BuildContext context, ValueGetter<String> callback,
     {String appFolder = ""}) {
   var strDir = getAppPath(context, callback, appFolder: appFolder);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Returns a [Drawer] with the given [listTileItems] and [headerHeight]
 Drawer getListViewAsDrawer(BuildContext context, double? headerHeight,
     String label, List<ListTile> listTileItems,
     {List<double> edgeItems = const [0, 0, 0, 0]}) {

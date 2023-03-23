@@ -8,6 +8,7 @@ typedef OnColorChangeCallback = void Function(Color, int, String, BuildContext);
 typedef OnThemeChangeCallback = void Function(
     ThemeData, int, String, BuildContext);
 
+/// This is a wrapper for the DropdownMenu class
 class DropdownMenu<T> extends StatefulWidget {
   List<Tuple2<String, T>> menuItems = [];
   dynamic selectedValue;
@@ -65,6 +66,9 @@ class _DropdownMenuState<T> extends State<DropdownMenu<T>> {
   }
 }
 
+/// creates set of DropdownMenuItem based on the given
+/// List<Tuple2<String, T>> where the Tuple String is the menu item label
+/// and the T is the control underneath
 List<DropdownMenuItem<T>> getDropdownMenuItems<T>(
     BuildContext context, List<Tuple2<String, T>> menuItems) {
   debugger();
@@ -84,6 +88,7 @@ DropdownMenuItem<T> getDropdownMenuItem<T>(
   );
 }
 
+/// This is a wrapper for the DropdownMenu class
 DropdownMenu<T> getDropdownMenu<T>(
     BuildContext context,
     List<Tuple2<String, T>> menuItems,
@@ -98,6 +103,7 @@ DropdownMenu<T> getDropdownMenu<T>(
   return w;
 }
 
+/// This is a wrapper for the CustomDropdown class
 CustomDropdown<ThemeData> getCustomDropdownMenuForThemeNames<T>(
     BuildContext context,
     ValueGetter<T> getterCallback,
@@ -129,6 +135,7 @@ CustomDropdown<ThemeData> getCustomDropdownMenuForThemeNames<T>(
       items: getDropdownItems(tupleCallback(context)));
 }
 
+/// This is a wrapper for the CustomDropdown class for a color chooser
 CustomDropdown<Color> getCustomDropdownMenuForColor(String label,
     {double width = 150,
     double height = 20,

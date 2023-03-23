@@ -3,6 +3,7 @@ import './style_utils.dart';
 import './button_utils.dart';
 import 'dart:developer';
 
+/// Returns a [Dialog] with the given [title], [message] and [buttons] to close the dialog
 Future<void> PromptUser(BuildContext context, String title, String message,
     String textOptionTrue, String textOptionFalse) {
   ElevatedButton? buttonTrue = textOptionTrue.length > 0
@@ -60,6 +61,7 @@ Future<void> PromptUser(BuildContext context, String title, String message,
   );
 }
 
+/// Returns a [Dialog] with the given [title], [message] and [buttons] to close the dialog, returns a boolean
 Future<bool?> PromptUserBool(BuildContext context, String title, String message,
     String textOptionTrue, String textOptionFalse) {
   TextButton? buttonTrue = textOptionTrue.length > 0
@@ -107,6 +109,8 @@ Future<bool?> PromptUserBool(BuildContext context, String title, String message,
   });
 }
 
+/// Returns a [Dialog] with the given [title], [message] and [buttons] to close the dialog,
+/// allows the user to edit a string
 Future<String?> PromptUserInputSingleEdit(BuildContext context, String title,
     String message, String textOptionTrue, String textOptionFalse) {
   TextEditingController valueController = TextEditingController();

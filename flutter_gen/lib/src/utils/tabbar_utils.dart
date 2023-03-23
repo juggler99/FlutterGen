@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 
+/// Returns a [TabBar] with the given widgets [items]
 TabBar createTabBarFromListOfTuples(List<Tuple3<String, Icon?, Widget>> items) {
   var tabs = <Tab>[];
   Tab tab;
@@ -15,6 +16,7 @@ TabBar createTabBarFromListOfTuples(List<Tuple3<String, Icon?, Widget>> items) {
   return TabBar(tabs: tabs);
 }
 
+/// Returns a [TabBar] with the given string [items]
 TabBar createTabBarFromListOfText(List<String> items) {
   var tabs = <Tab>[];
   Tab? tab;

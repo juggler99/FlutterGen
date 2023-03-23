@@ -40,6 +40,7 @@ class _ExtendedMenuState extends State<ExtendedMenu> {
   }
 }
 
+/// Returns a [PopupMenuButton] with the given [listTileItems] and [headerHeight]
 PopupMenuItem<ListTile> getPopupMenuItemNav(
     BuildContext context, IconData? argIcon, String label, String NavTarget,
     {bool allowBack = true,
@@ -50,6 +51,7 @@ PopupMenuItem<ListTile> getPopupMenuItemNav(
       child: getListTile(context, icon, label, NavTarget));
 }
 
+/// Returns a [ListTile] item with given icon, label and NavegationTarget
 ListTile getListTile(
     BuildContext context, Icon? icon, String label, String NavTarget,
     {bool allowBack = true,
