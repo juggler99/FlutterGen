@@ -17,8 +17,6 @@ dependencies:
   flutter_treeview:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
-  flutter_gen: 
-    path: ./flutter_gen
 
 dev_dependencies:
   flutter_test:

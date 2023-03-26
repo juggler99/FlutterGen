@@ -111,18 +111,20 @@ List<Node> getChildrenPathElements(Node parentNode, Directory dir) {
 }
 
 ///Returns a Tree of Nodes representing files under given App [Directory]
-List<Node> listFiles(BuildContext context, ValueGetter<String> callback,
-    {String appFolder = ""}) {
-  var strDir = getAppPath(context, callback, appFolder: appFolder);
-  var dir = Directory(strDir);
+List<Node> listFiles(BuildContext context, String targetPath, String filter) {
+  var dir = Directory(targetPath);
   List<FileSystemEntity> files = dir.listSync(recursive: true);
   print("Dir: ${dir.path}");
   var rootNode = Node(
-      label: "root", key: strDir, icon: Icons.folder, parent: true, data: dir);
+      label: "root",
+      key: dir.path,
+      icon: Icons.folder,
+      parent: true,
+      data: dir);
   List<Node> nodes = getChildrenPathElements(rootNode, dir);
   rootNode = Node(
       label: "root",
-      key: strDir,
+      key: dir.path,
       icon: Icons.folder,
       parent: true,
       data: dir,

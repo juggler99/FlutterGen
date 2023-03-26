@@ -107,7 +107,7 @@ DropdownMenu<T> getDropdownMenu<T>(
 CustomDropdown<ThemeData> getCustomDropdownMenuForThemeNames<T>(
     BuildContext context,
     ValueGetter<T> getterCallback,
-    List<Tuple2<String, ThemeData>> Function(BuildContext) tupleCallback,
+    List<Tuple2<String, ThemeData>> themeDataItems,
     String label,
     OnThemeChangeCallback callback,
     {double width = 150,
@@ -132,7 +132,7 @@ CustomDropdown<ThemeData> getCustomDropdownMenuForThemeNames<T>(
         elevation: 3,
         padding: EdgeInsets.all(1),
       ),
-      items: getDropdownItems(tupleCallback(context)));
+      items: getDropdownItems(themeDataItems));
 }
 
 /// This is a wrapper for the CustomDropdown class for a color chooser
