@@ -7,12 +7,15 @@ import '../../controls/header.dart';
 import '../../utils/button_utils.dart';
 import 'dart:developer';
 
+typedef void CallbackFunction(String? fullPath);
+
 class FileOpenDilaog extends StatefulWidget {
   String? targetFolder;
   String? title;
   String? filter;
+  CallbackFunction? callback;
 
-  FileOpenDilaog({this.targetFolder, this.title, this.filter});
+  FileOpenDilaog({this.targetFolder, this.title, this.filter, this.callback});
 
   @override
   _FileOpenDilaogState createState() => _FileOpenDilaogState();
@@ -50,7 +53,7 @@ class _FileOpenDilaogState extends State<FileOpenDilaog>
   @override
   Widget build(BuildContext context) {
     final args =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String?>;
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic?>;
 
     var header =
         Header(toolbarHeight: 100, title: args["title"], items: HeaderItems());
@@ -68,7 +71,8 @@ class _FileOpenDilaogState extends State<FileOpenDilaog>
           supportParentDoubleTap: false,
           //onExpansionChanged: _expandNodeHandler,
           onNodeTap: (key) {
-            PromptUser(context, "Path Element Info", key, "OK", "");
+            args["callback"]!(key);
+            Navigator.pop(context);
           }),
     );
   }

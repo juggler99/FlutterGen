@@ -22,7 +22,7 @@ TabBar createTabBarFromListOfText(List<String> items) {
   Tab? tab;
   for (int i = 0; i < items.length; i++) {
     tab = Tab(text: items[i]);
-    tabs.add(tab!);
+    tabs.add(tab);
   }
   return TabBar(tabs: tabs);
 }

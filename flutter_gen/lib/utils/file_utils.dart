@@ -59,10 +59,10 @@ String getAppPath<T extends State<StatefulWidget>>(
     BuildContext context, ValueGetter<String> callback,
     {appFolder: ""}) {
   var appRootFolder = callback();
-  if (appRootFolder?.split(path.separator).last == appFolder) {
-    return appRootFolder!;
+  if (appRootFolder.split(path.separator).last == appFolder) {
+    return appRootFolder;
   }
-  return concatPaths([appRootFolder!, appFolder]);
+  return concatPaths([appRootFolder, appFolder]);
 }
 
 ///Returns a string representing full path for a filename
@@ -114,6 +114,7 @@ List<Node> getChildrenPathElements(Node parentNode, Directory dir) {
 List<Node> listFiles(BuildContext context, String targetPath, String filter) {
   var dir = Directory(targetPath);
   List<FileSystemEntity> files = dir.listSync(recursive: true);
+  debugger();
   print("Dir: ${dir.path}");
   var rootNode = Node(
       label: "root",
