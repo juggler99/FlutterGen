@@ -17,8 +17,7 @@ dependencies:
   flutter_treeview:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
-  yaml:
-  flutter/services:
+  yaml:  
 
 dev_dependencies:
   flutter_test:
