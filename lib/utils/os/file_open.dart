@@ -60,6 +60,8 @@ class _FileOpenDilaogState extends State<FileOpenDilaog>
 
     List<Node> _nodes =
         listFiles(context, args["targetFolder"]!, args["filter"]!);
+    var _nodeMap = Map<String, Node>();
+    _nodes.forEach((node) => _nodeMap[node.key] = node);
 
     treeViewController = TreeViewController(children: _nodes);
 
@@ -71,7 +73,7 @@ class _FileOpenDilaogState extends State<FileOpenDilaog>
           supportParentDoubleTap: false,
           //onExpansionChanged: _expandNodeHandler,
           onNodeTap: (key) {
-            args["callback"]!(key);
+            args["callback"]!(_nodeMap[key]!.data.path);
             Navigator.pop(context);
           }),
     );
