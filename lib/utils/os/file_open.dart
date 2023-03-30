@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import '../../utils/dlg_utils.dart';
 import 'package:path/path.dart' as path;
@@ -58,7 +60,7 @@ class _FileOpenDilaogState extends State<FileOpenDilaog>
     var header =
         Header(toolbarHeight: 100, title: args["title"], items: HeaderItems());
 
-    List<Node> _nodes =
+    List<Node<FileSystemEntity>> _nodes =
         listFiles(context, args["targetFolder"]!, args["filter"]!);
     var _nodeMap = Map<String, Node>();
     _nodes.forEach((node) => _nodeMap[node.key] = node);
@@ -73,7 +75,8 @@ class _FileOpenDilaogState extends State<FileOpenDilaog>
           supportParentDoubleTap: false,
           //onExpansionChanged: _expandNodeHandler,
           onNodeTap: (key) {
-            args["callback"]!(_nodeMap[key]!.data.path);
+            var fileSystemItem = _nodeMap[key]!.data as FileSystemEntity;
+            args["callback"]!(fileSystemItem.path);
             Navigator.pop(context);
           }),
     );
