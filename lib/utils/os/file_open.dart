@@ -11,19 +11,19 @@ import 'dart:developer';
 
 typedef void CallbackFunction(String? fullPath);
 
-class FileOpenDilaog extends StatefulWidget {
+class FileOpenDialog extends StatefulWidget {
   String? targetFolder;
   String? title;
   String? filter;
   CallbackFunction? callback;
 
-  FileOpenDilaog({this.targetFolder, this.title, this.filter, this.callback});
+  FileOpenDialog({this.targetFolder, this.title, this.filter, this.callback});
 
   @override
-  _FileOpenDilaogState createState() => _FileOpenDilaogState();
+  _FileOpenDialogState createState() => _FileOpenDialogState();
 }
 
-class _FileOpenDilaogState extends State<FileOpenDilaog>
+class _FileOpenDialogState extends State<FileOpenDialog>
     with TickerProviderStateMixin {
   int _numTabs = 1;
   late TabController _tabController;
@@ -62,8 +62,6 @@ class _FileOpenDilaogState extends State<FileOpenDilaog>
 
     List<Node<FileSystemEntity>> _nodes =
         listFiles(context, args["targetFolder"]!, args["filter"]!);
-    var _nodeMap = Map<String, Node>();
-    _nodes.forEach((node) => _nodeMap[node.key] = node);
 
     treeViewController = TreeViewController(children: _nodes);
 
@@ -75,8 +73,7 @@ class _FileOpenDilaogState extends State<FileOpenDilaog>
           supportParentDoubleTap: false,
           //onExpansionChanged: _expandNodeHandler,
           onNodeTap: (key) {
-            var fileSystemItem = _nodeMap[key]!.data as FileSystemEntity;
-            args["callback"]!(fileSystemItem.path);
+            args["callback"]!(key);
             Navigator.pop(context);
           }),
     );

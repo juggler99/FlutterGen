@@ -89,17 +89,18 @@ String concatPaths(List<String> items) {
 }
 
 ///Returns a set of Nodes representing files under given [Directory]
-List<Node> getChildrenPathElements(Node parentNode, Directory dir) {
+List<Node<FileSystemEntity>> getChildrenPathElements(
+    Node parentNode, Directory dir) {
   var items = dir.listSync(recursive: true);
-  List<Node> children = <Node>[];
+  var children = <Node<FileSystemEntity>>[];
   for (FileSystemEntity item in items) {
-    List<String> parts = item.path.split('/');
-    var node =
-        Node(label: parts.last, key: parts.last, icon: Icons.description);
+    List<String> parts = item.path.split(path.separator);
+    var node = Node<FileSystemEntity>(
+        label: parts.last, key: item.path, icon: Icons.description, data: item);
     if (item is Directory) {
-      node = Node(
+      node = Node<FileSystemEntity>(
           label: parts.last,
-          key: parts.last,
+          key: item.path,
           icon: Icons.folder,
           data: item,
           expanded: true,
@@ -115,22 +116,25 @@ List<Node<FileSystemEntity>> listFiles(
     BuildContext context, String targetPath, String filter) {
   var dir = Directory(targetPath);
   List<FileSystemEntity> files = dir.listSync(recursive: true);
-  debugger();
+
   print("Dir: ${dir.path}");
   var rootNode = Node<FileSystemEntity>(
       label: "root",
       key: dir.path,
       icon: Icons.folder,
       parent: true,
-      data: dir);
-  List<Node> nodes = getChildrenPathElements(rootNode, dir);
+      data: dir,
+      expanded: true);
+  List<Node<FileSystemEntity>> childNodes =
+      getChildrenPathElements(rootNode, dir);
+
   rootNode = Node<FileSystemEntity>(
       label: "root",
       key: dir.path,
       icon: Icons.folder,
       parent: true,
       data: dir,
-      children: nodes,
+      children: childNodes,
       expanded: true);
   return [rootNode];
 }
